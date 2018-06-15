@@ -1,0 +1,3 @@
+#!/bin/sh
+
+consul agent -server -bootstrap-expect 1 -data-dir /home/dave/consul/vault/ -bind=127.0.0.1 -http-port 38500 &

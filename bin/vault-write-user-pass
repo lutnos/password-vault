@@ -1,0 +1,10 @@
+#! /bin/bash
+set -e
+
+vault_addr=${VAULT_ADDR:-'http://127.0.0.1:8200'}
+
+read -s -p "Password:" p
+
+vault write -address $vault_addr secret/$1 user=$2 password=`echo -n $p|base64`
+vault write -address $vault_addr secret/$1/`date --utc +%s` user=$2 password=`echo -n $p|base64`
+

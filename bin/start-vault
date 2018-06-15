@@ -1,0 +1,3 @@
+#!/bin/sh
+
+vault server -config=/home/dave/vault/server-consul.hcl &

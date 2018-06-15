@@ -1,0 +1,7 @@
+#! /bin/bash
+set -e
+
+vault_addr=${VAULT_ADDR:-'http://127.0.0.1:8200'}
+
+vault list -address $vault_addr secret/ |grep -v '/$' |grep $1
+
