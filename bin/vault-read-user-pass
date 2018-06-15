@@ -3,6 +3,15 @@ set -e
 
 vault_addr=${VAULT_ADDR:-'http://127.0.0.1:8200'}
 
-echo 'user ' `vault read -address $vault_addr -field user secret/$1`
-
-vault read -address $vault_addr -field password secret/$1 |base64 --decode|xclip -selection c
+if vault read -address $vault_addr -field user secret/$1 2>&1 |grep '^No value found at secret/' >/dev/null
+then
+ if vault list -address $vault_addr secret/ |grep -v '/$' |grep $1|wc -l|grep '^1$' >/dev/null
+ then
+  vault-read-user-pass `vault list -address $vault_addr secret |grep -v '/$' |grep $1`
+ else
+  vault-find $1
+ fi
+else
+ echo 'user ' `vault read -address $vault_addr -field user secret/$1`
+ vault read -address $vault_addr -field password secret/$1 |base64 --decode|xclip -selection c
+fi
