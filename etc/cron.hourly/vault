@@ -1,5 +1,0 @@
-#!/bin/sh
-set -e
-
-cp -r /home/dave/consul/vault /home/dave/Dropbox/hmrc
-chown -R dave:dave /home/dave/Dropbox/hmrc/vault
