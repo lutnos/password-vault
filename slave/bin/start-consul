@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rm -rf ~/consul/vault/*
+cp -r ~/Dropbox/hmrc/vault/* ~/consul/vault/
+
+consul agent -server -bootstrap-expect 1 -data-dir ~/consul/vault/ -bind=127.0.0.1 -http-port 38500 -server-port 38300 -serf-lan-port 38301 -serf-wan-port -1 -dns-port 38600 -raft-protocol 3 -node daves-vault &

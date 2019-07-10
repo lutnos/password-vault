@@ -1,2 +1,0 @@
-#!/bin/bash
-cp -r /Users/dave/consul/vault/ /Users/dave/Dropbox/hmrc/vault-mac
